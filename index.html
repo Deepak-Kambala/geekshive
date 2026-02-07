@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geeks Hive | Immersive Student Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        scroll-padding-top: 100px;
+        --bg-color: #050505;
+        --text-color: #ffffff;
+        --grid-color: rgba(16, 185, 129, 0.05);
+      }
+      
+      body.light-mode {
+        --bg-color: #ffffff;
+        --text-color: #0a0a0a;
+        --grid-color: rgba(0, 0, 0, 0.03); /* Very light neutral grid for light mode */
+      }
+
+      * {
+        cursor: none !important;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Refined Neural Grid with Scanning Effect */
+      .grid-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -5;
+        background-image: 
+          linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(circle at center, black, transparent 80%);
+      }
+
+      .grid-bg::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 100%;
+        background: linear-gradient(to bottom, transparent, var(--grid-color), transparent);
+        animation: scan 10s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes scan {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-color);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1a1a1a;
+        border-radius: 10px;
+      }
+      body.light-mode ::-webkit-scrollbar-thumb {
+        background: #e0e0e0;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #10b981;
+      }
+
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.01);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      body.light-mode .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.12); /* Pronounced outline for each card */
+        box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+      }
+      
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+
+      .preserve-3d {
+        transform-style: preserve-3d;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "framer-motion": "https://esm.sh/framer-motion@^12.33.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div class="grid-bg"></div>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
